@@ -5,37 +5,46 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddHttpsRedirection(options =>
+{
+    options.HttpsPort = 5000; // or your preferred HTTPS port
+});
+
+builder.Services.AddScoped<FirebaseService>();
+builder.Services.AddControllers();
+
+// Configure to use HTTP only for development
+builder.WebHost.UseUrls("http://localhost:5000");
+
+builder.Services.AddLogging(logging =>
+{
+    logging.ClearProviders();
+    logging.AddConsole();
+    logging.SetMinimumLevel(LogLevel.Information);
+});
+
 var app = builder.Build();
+
+Console.WriteLine("Application built, configuring middleware...");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+        c.RoutePrefix = "swagger";
+    });
+    Console.WriteLine("Swagger configured at http://localhost:5000/swagger");
 }
 
-app.UseHttpsRedirection();
+// Remove HTTPS redirection completely
+// app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+app.MapControllers();
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
-
+Console.WriteLine("Starting server...");
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
