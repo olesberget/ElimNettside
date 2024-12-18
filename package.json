@@ -1,0 +1,12 @@
+{
+  "name": "elimnettside",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "echo 'Root script placeholder. Go to frontend directory to run React app.'",
+    "install:frontend": "cd frontend && npm install"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
+}

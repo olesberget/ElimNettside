@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-function elimMedia() {
+function ElimMedia() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -31,4 +31,4 @@ function elimMedia() {
   );
 }
 
-export default elimMedia;
+export default ElimMedia;

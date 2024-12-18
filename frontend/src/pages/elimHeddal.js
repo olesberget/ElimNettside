@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-function elimHeddal() {
+function ElimHeddal() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -31,4 +31,4 @@ function elimHeddal() {
   );
 }
 
-export default elimHeddal;
+export default ElimHeddal;

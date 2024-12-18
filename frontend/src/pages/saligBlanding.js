@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-function saligBlanding() {
+function SaligBlanding() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -31,4 +31,4 @@ function saligBlanding() {
   );
 }
 
-export default saligBlanding;
+export default SaligBlanding;

@@ -9,9 +9,11 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {/* Navigation Bar */}
         <nav>
           <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
             <li>
               <Link to="/elim">ElimHeddal</Link>
             </li>
@@ -24,8 +26,8 @@ function App() {
           </ul>
         </nav>
 
-        {/* Routes */}
         <Routes>
+          <Route path="/" element={<h1>Welcome to Elim</h1>} />
           <Route path="/elim" element={<ElimHeddal />} />
           <Route path="/elimmedia" element={<ElimMedia />} />
           <Route path="/saligblanding" element={<SaligBlanding />} />
