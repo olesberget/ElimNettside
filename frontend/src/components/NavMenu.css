@@ -1,0 +1,38 @@
+.nav-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #778b23;
+    padding: 10px;
+  }
+  
+  .nav-logo {
+    height: 50px;
+    cursor: pointer;
+  }
+  
+  .nav-toggle {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: black;
+    margin: 5px 0;
+  }

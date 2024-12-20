@@ -1,0 +1,26 @@
+.component-menu {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.menu-item {
+  background-color: #778b23;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.menu-item:hover {
+  background-color: #5b6d1a;
+}
+
+.menu-icon {
+  margin-right: 8px;
+  font-size: 18px;
+}

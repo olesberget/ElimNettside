@@ -1,32 +1,40 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
+import ComponentsMenu from "../components/ComponentsMenu";
+import StartsideElimMedia from "../components/StartsideElimMedia";
+import { FaHome, FaCalendar, FaMusic, FaGift } from "react-icons/fa";
 
 function ElimMedia() {
-  const [data, setData] = useState([]);
+  const [currentComponent, setCurrentComponent] = useState("startside");
 
-  useEffect(() => {
-    // Fetch data from your backend
-    axios
-      .get("http://localhost:5000/api/data/fetch")
-      .then((response) => setData(response.data))
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);
+  const menuItems = [
+    { name: "Startside", icon: <FaHome />, component: "startside" },
+    { name: "Kalender", icon: <FaCalendar />, component: "kalender" },
+    { name: "Sanger", icon: <FaMusic />, component: "sanger" },
+    { name: "Gi Gave", icon: <FaGift />, component: "giGave" },
+  ];
+
+  const renderComponent = () => {
+    switch (currentComponent) {
+      case "startside":
+        return <StartsideElimMedia />;
+      case "kalender":
+        return <div>Kalender Component Placeholder</div>;
+      case "sanger":
+        return <div>Sanger Component Placeholder</div>;
+      case "giGave":
+        return <div>Gi Gave Component Placeholder</div>;
+      default:
+        return <StartsideElimMedia />;
+    }
+  };
 
   return (
-    <div>
-      <h1>Welcome to Elim Media</h1>
-      <p>Here you can find calendar events, images, and links!</p>
-      {data.map((item, index) => (
-        <div key={index}>
-          <h2>{item.title}</h2>
-          <p>{item.text}</p>
-          {item.link && (
-            <a href={item.link} target="_blank" rel="noopener noreferrer">
-              View More
-            </a>
-          )}
-        </div>
-      ))}
+    <div className="page elim-media">
+      <ComponentsMenu
+        items={menuItems}
+        onMenuItemClick={(component) => setCurrentComponent(component)}
+      />
+      <div className="content">{renderComponent()}</div>
     </div>
   );
 }
